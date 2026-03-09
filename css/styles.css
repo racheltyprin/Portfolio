@@ -256,6 +256,16 @@
     background-color: var(--green-mid);
   }
 
+  .contact-success {
+    display: none;
+    font-size: 14px;
+    color: var(--green-dark);
+  }
+
+  .contact-success.show {
+    display: block;
+  }
+
   /* ===========================
      PAGE DIVIDER
      =========================== */

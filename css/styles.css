@@ -78,6 +78,14 @@
     white-space: nowrap;
   }
   
+  .hero-photo {
+    height: clamp(36px, 6vw, 72px);
+    width: auto;
+    object-fit: cover;
+    border-radius: 50%;
+    justify-self: end;
+  }
+
   .hero-subtitle {
     font-family: var(--font-body);
     font-size: 20px;
@@ -315,14 +323,10 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--text-muted);
-    white-space: nowrap;
-  }
-  
-  .toc-header-meta a {
     color: var(--green-mid);
     text-decoration: underline;
     text-underline-offset: 2px;
+    white-space: nowrap;
   }
   
   .toc-grid {

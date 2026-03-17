@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microclimate Prediction — Rachel Typrin</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=chillax@700,800,900&f[]=satoshi@400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/project.css">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="logo"><a href="index.html">RACHEL TYPRIN</a></div>
+
+    <nav class="toc">
+      <div class="toc-section">
+        <h3 class="section-title">1. PROJECTS</h3>
+        <ul>
+          <li><a href="aiprototypingcart.html">AI Prototyping Cart</a></li>
+          <li><a href="cardgameforgrief.html">Card Game For Grief</a></li>
+          <li class="active"><a href="microclimatepredictions.html">Microclimate Prediction</a></li>
+        </ul>
+      </div>
+      <div class="toc-section">
+        <h3 class="section-title">2. RESEARCH</h3>
+        <ul>
+          <li><a href="brainconnectivity.html">Brain Connectivity Research</a></li>
+          <li><a href="hopecore.html">HCI Research: Hopecore</a></li>
+        </ul>
+      </div>
+      <div class="toc-section">
+        <h3 class="section-title">3. ABOUT</h3>
+        <ul>
+          <li><a href="#">Who I am</a></li>
+          <li><a href="#">Resume</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="main-wrapper">
+
+    <nav class="content-nav">
+      <div class="nav-left">
+        <span class="nav-arrows" onclick="history.back()">&lt;</span>
+        <span class="nav-arrows" onclick="history.forward()">&gt;</span>
+        <span class="breadcrumb">PROJECTS / <span class="current">MICROCLIMATE PREDICTION</span></span>
+      </div>
+      <div class="nav-right"><a class="mobile-home" href="index.html">HOME</a></div>
+    </nav>
+
+    <div class="content-well">
+
+      <div class="meta-data">RACHEL TYPRIN</div>
+      <h1 class="page-title">SF BAY AREA MICROCLIMATE PREDICTION</h1>
+      <p class="page-subtitle">A three-phase ML pipeline that learns the physical and atmospheric drivers of Bay Area microclimates to generate neighborhood-level weather predictions across the region.</p>
+
+      <div class="section-divider">———</div>
+
+      <figure class="main-figure">
+        <figcaption class="fig-label">
+          <span class="highlight">FIG 1. Overview of the prototyping cart.</span>
+        </figcaption>
+        <div class="image-border">
+          <div class="placeholder-diagram">Diagram goes here</div>
+        </div>
+      </figure>
+
+      <article class="prose">
+        <h2>The Context</h2>
+        <p>The Bay Area has incredibly hyperlocal weather. On any given afternoon, the Sunset District might be fogged in and 57°F while the Mission, two miles away, is sunny and 72°F. Scale that dynamically across the full Bay Area region, and it gets even more complex: San Francisco and San Jose can feel like different climates entirely. Growing up here, I noticed weather forecasts were inaccurate, and couldn’t find a tool that actually captured the granularity of the weather here. Coarse atmospheric reanalysis data covers the Bay Area with just 42 grid points across 7,000 square miles, and while ground station networks exist, they are unevenly distributed and designed for aviation and agriculture rather than neighborhood-level prediction. What's missing is a model that learns why neighborhoods behave differently, because when the forecast is wrong, it's not just an inconvenience, it shapes how people move through their day.</p>
+      </article>
+
+      <figure class="main-figure">
+        <figcaption class="fig-label">
+          <span class="highlight">FIG 2. Component architecture.</span>
+        </figcaption>
+        <div class="image-border">
+          <div class="placeholder-diagram">Diagram goes here</div>
+        </div>
+      </figure>
+
+      <article class="prose">
+        <h2>The Approach</h2>
+        <p>The pipeline is designed in three stages. Stage 1 trains a <a class="vocab" href="#gloss-1">gradient-boosted tree<sup class="vocab-num">1</sup><span class="vocab-def"><strong>Gradient-boosted tree</strong> — An ensemble ML model that builds decision trees sequentially, each correcting the errors of the last.</span></a> per weather variable using 13 months of observations from 582 quality-controlled <a class="vocab" href="#gloss-2">Synoptic stations<sup class="vocab-num">2</sup><span class="vocab-def"><strong>Synoptic stations</strong> — A network of professional ground weather stations.</span></a> combined with <a class="vocab" href="#gloss-3">ERA5<sup class="vocab-num">3</sup><span class="vocab-def"><strong>ERA5</strong> — A dataset that reconstructs global atmospheric conditions at 27km resolution by running historical observations through a modern weather model.</span></a> features, including <a class="vocab" href="#gloss-4">boundary layer height<sup class="vocab-num">4</sup><span class="vocab-def"><strong>Boundary layer height</strong> — The depth of the marine layer, directly controlling how far fog penetrates inland.</span></a> as a primary input. Stage 2 adds an <a class="vocab" href="#gloss-5">LSTM<sup class="vocab-num">5</sup><span class="vocab-def"><strong>LSTM</strong> — A recurrent neural network architecture designed to learn patterns across time sequences.</span></a> for temperature and humidity. Stage 3 predicts at arbitrary grid points across the Bay Area, producing a continuous weather map from which microclimate zones emerge based on learned behavior rather than geography. The architecture was a deliberate rejection of the published Geo-LSTM-Kriging approach, which has no way to represent vertical atmospheric structure and couldn't achieve the sub-degree accuracy needed to differentiate Bay Area neighborhoods. Data engineering was equally consequential: quality control across 1,124 stations surfaced three mechanistically distinct failure modes, each requiring different treatment, and a key derived feature encoding each station's position relative to the marine layer boundary meaningfully improved performance near the fog edge.</p>
+      </article>
+
+      <figure class="main-figure">
+        <figcaption class="fig-label">
+          <span class="highlight">FIG 3. Feedback</span>
+        </figcaption>
+        <div class="image-border">
+          <div class="placeholder-diagram">Diagram goes here</div>
+        </div>
+      </figure>
+
+      <article class="prose">
+        <h2>The Results</h2>
+        <p>Stage 1 is complete. The gradient-boosted models trained on 582 quality-controlled stations predict temperature to within 0.7°C and humidity to within 4.3%, reducing error by roughly 70% compared to using coarse atmospheric data directly. A second model version added features encoding each station's position relative to the marine layer boundary, meaningfully improving performance for stations near the fog edge. Feature engineering improvements are ongoing before moving to Stage 2.</p>
+      </article>
+
+      <div class="section-divider">———</div>
+
+      <div class="glossary">
+        <h2 class="glossary-title">Glossary</h2>
+        <div class="toc-header-line"></div>
+        <div class="glossary-grid">
+          <div class="glossary-col">
+            <div class="glossary-entry" id="gloss-1">
+              <p><sup>1</sup> <strong>Gradient-boosted tree</strong> — An ensemble ML model that builds decision trees sequentially, each correcting the errors of the last.</p>
+            </div>
+            <div class="glossary-entry" id="gloss-3">
+              <p><sup>3</sup> <strong>ERA5</strong> — A dataset that reconstructs global atmospheric conditions at 27km resolution by running historical observations through a modern weather model.</p>
+            </div>
+            <div class="glossary-entry" id="gloss-5">
+              <p><sup>5</sup> <strong>LSTM</strong> — A recurrent neural network architecture designed to learn patterns across time sequences.</p>
+            </div>
+          </div>
+          <div class="glossary-col">
+            <div class="glossary-entry" id="gloss-2">
+              <p><sup>2</sup> <strong>Synoptic stations</strong> — A network of professional ground weather stations.</p>
+            </div>
+            <div class="glossary-entry" id="gloss-4">
+              <p><sup>4</sup> <strong>Boundary layer height</strong> — The depth of the marine layer, directly controlling how far fog penetrates inland.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="end-text">---END---</div>
+
+    </div>
+  </main>
+
+
+
+<script src="js/vocab.js"></script>
+</body>
+</html>

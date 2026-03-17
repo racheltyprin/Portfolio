@@ -12,6 +12,7 @@
     --highlighter: #ab5a5a; 
     --font-heading: 'Chillax', sans-serif;
     --font-body: 'Satoshi', sans-serif;
+    --white: #fcf9f7;
   }
   
   /* ===========================
@@ -99,6 +100,7 @@
   
   .toc a:hover {
     color: var(--green-dark);
+    text-decoration: underline;
   }
   
   .toc li.active a {
@@ -183,6 +185,10 @@
   .nav-right {
     color: var(--text-muted);
   }
+
+  .nav-right .mobile-home {
+    display: none;
+  }
   
   /* ===========================
      CONTENT WELL
@@ -197,6 +203,7 @@
     border-bottom: 1px solid var(--border);
     position: relative;
     overflow: visible;
+    background-color: var(--white);
   }
   
   /* ===========================
@@ -463,6 +470,10 @@
       overflow-y: visible;
     }
   
+    .nav-right .mobile-home {
+      display: inline;
+    }
+
     .content-nav,
     .content-well {
       max-width: 100%;

@@ -13,6 +13,7 @@
     --font-heading: 'Chillax', sans-serif;
     --font-body: 'Satoshi', sans-serif;
     --white: #fcf9f7;
+    --pink-bg: #F0E2DC;
   }
   
   /* ===========================
@@ -203,7 +204,7 @@
     border-bottom: 1px solid var(--border);
     position: relative;
     overflow: visible;
-    background-color: var(--white);
+    background-color: var(--cream);
   }
   
   /* ===========================

@@ -22,9 +22,10 @@
         </ul>
       </div>
       <div class="toc-section">
-        <h3 class="section-title">2. EXPERIMENTS</h3>
+        <h3 class="section-title">2. RESEARCH</h3>
         <ul>
           <li><a href="microclimatepredictions.html">SF Bay Area Microclimates</a></li>
+          <li><a href="hopecore.html">Human Computer Interaction: Hopecore</a></li>
         </ul>
       </div>
       <div class="toc-section">
@@ -53,7 +54,7 @@
 
       <div class="meta-data">RACHEL TYPRIN</div>
       <h1 class="page-title">BRAIN CONNECTIVITY RESEARCH</h1>
-      <p class="page-subtitle">Replicating and extending a computational neuroscience study <br> on how brain structure predicts brain function.</p>
+      <p class="page-subtitle">Mapping the relationship between the brain's physical wiring and its activity patterns, <br> with implications for how we model and understand neurological health.</p>
 
       <div class="section-divider">———</div>
 
@@ -68,7 +69,7 @@
 
       <article class="prose">
         <h2>The Context</h2>
-        <p>The brain has physical wiring and patterns of activity, and a fundamental question in neuroscience is whether you can predict one from the other. A 2023 study proposed that routing signals through a small backbone subnetwork was the best graph algorithm for predicting functional connectivity from structural connectivity. Their search for the optimal backbone relied on random sampling. I wanted to _________…</p>
+        <p>A fundamental question in computational neuroscience is whether you can predict how regions of the brain communicate functionally just by knowing how they are physically connected. A 2023 paper tackled this directly, modeling communication through the brain's <a class="vocab" href="#gloss-1">structural connectome<sup class="vocab-num">1</sup><span class="vocab-def"><strong>Structural connectome</strong> — A map of the physical white matter connections between brain regions, derived from diffusion MRI.</span></a> to generate simulated <a class="vocab" href="#gloss-2">functional connectivity<sup class="vocab-num">2</sup><span class="vocab-def"><strong>Functional connectivity</strong> — The degree to which brain regions show synchronized activity over time, measured from fMRI scans.</span></a>. Their best result came from <a class="vocab" href="#gloss-3">subnet communicability<sup class="vocab-num">3</sup><span class="vocab-def"><strong>Subnet communicability</strong> — A measure of how easily information spreads through the brain, calculated only through a small subset of backbone nodes rather than the full network.</span></a>: a communication model that routes through a small set of <a class="vocab" href="#gloss-4">backbone nodes<sup class="vocab-num">4</sup><span class="vocab-def"><strong>Backbone nodes</strong> — Brain regions chosen to act as communication relays for subnet communicability.</span></a>, rather than the full brain network, with the idea that a few well-placed hubs can capture the brain's overall communication patterns. Subnet communicability achieved a mean <a class="vocab" href="#gloss-5">Pearson r<sup class="vocab-num">5</sup><span class="vocab-def"><strong>Pearson r</strong> — A correlation coefficient between -1 and 1; higher means better prediction.</span></a> of 0.371. I set out to replicate their methodology and see if I could find a better one.</p>
       </article>
 
       <figure class="main-figure">
@@ -82,7 +83,7 @@
 
       <article class="prose">
         <h2>The Approach</h2>
-        <p>Working solo from a mentor's brief, I mapped the AI tool landscape onto the three-phase design process students were already following: research, prototyping, and MVP development. I built a first version, tested it with 12 students, and iterated on their feedback, adding search functionality and specific tools they requested.</p>
+        <p>I replicated the 2023 paper’s methodology using the same 1000Brains dataset, but my results didn’t support their central claim that subnet communicability outperformed communicability. I found that <a class="vocab" href="#gloss-6">full-network communicability<sup class="vocab-num">6</sup><span class="vocab-def"><strong>Full-network communicability</strong> — A measure of how easily information spreads between all pairs of brain regions simultaneously, using the full structural connectome rather than routing through a subset of nodes.</span></a> outperformed every subnet communicability variant I tested. Rather than stopping at a contradictory finding, I surveyed more recent literature and implemented several communication models the paper hadn’t tested including <a class="vocab" href="#gloss-7">heat kernel diffusion<sup class="vocab-num">7</sup><span class="vocab-def"><strong>Heat kernel diffusion</strong> — Simulates how a signal spreads and decays through a network over time.</span></a>, <a class="vocab" href="#gloss-8">cosine communicability<sup class="vocab-num">8</sup><span class="vocab-def"><strong>Cosine communicability</strong> — Measures how similar two brain regions’ overall communication patterns are across the whole network.</span></a>.</p>
       </article>
 
       <figure class="main-figure">
@@ -96,15 +97,50 @@
 
       <article class="prose">
         <h2>The Results</h2>
-        <p>Users rated navigation 4.4/5 and content helpfulness 4.2/5. Feedback pointed toward wanting more depth: example projects, concrete use cases, and tighter workflow integration. A clear roadmap for version 2 if the project continues.</p>
+        <p>Two new models meaningfully outperformed the paper's best result: heat kernel diffusion at its optimal setting achieved a mean r of 0.393 and cosine communicability reached 0.392, both roughly a 6% improvement over the paper's 0.371. Their subnet variants also cleared that bar (subnet cosine communicability peaked at r=0.380 and subnet heat kernel at r=0.375), though neither matched their own full-network counterparts. The original paper's methodology was a reasonable starting point, but these findings suggest that the brain's communication patterns are better captured by models that account for how signals spread and decay over time.</p>
       </article>
 
       <div class="section-divider">———</div>
+
+      <div class="glossary">
+        <h2 class="glossary-title">Glossary</h2>
+        <div class="toc-header-line"></div>
+        <div class="glossary-grid">
+            <div class="glossary-entry" id="gloss-1">
+              <p><sup>1</sup> <strong>Structural connectome</strong> — A map of the physical white matter connections between brain regions, derived from diffusion MRI.</p>
+            </div>
+            <div class="glossary-entry" id="gloss-2">
+              <p><sup>2</sup> <strong>Functional connectivity</strong> — The degree to which brain regions show synchronized activity over time, measured from fMRI scans.</p>
+            </div>
+            <div class="glossary-entry" id="gloss-3">
+              <p><sup>3</sup> <strong>Subnet communicability</strong> — A measure of how easily information spreads through the brain, calculated only through a small subset of backbone nodes rather than the full network.</p>
+            </div>
+            <div class="glossary-entry" id="gloss-4">
+              <p><sup>4</sup> <strong>Backbone nodes</strong> — Brain regions chosen to act as communication relays for subnet communicability.</p>
+            </div>
+            <div class="glossary-entry" id="gloss-5">
+              <p><sup>5</sup> <strong>Pearson r</strong> — A correlation coefficient between -1 and 1; higher means better prediction.</p>
+            </div>
+            <div class="glossary-entry" id="gloss-6">
+              <p><sup>6</sup> <strong>Full-network communicability</strong> — A measure of how easily information spreads between all pairs of brain regions simultaneously, using the full structural connectome rather than routing through a subset of nodes.</p>
+            </div>
+            <div class="glossary-entry" id="gloss-7">
+              <p><sup>7</sup> <strong>Heat kernel diffusion</strong> — Simulates how a signal spreads and decays through a network over time.</p>
+            </div>
+            <div class="glossary-entry" id="gloss-8">
+              <p><sup>8</sup> <strong>Cosine communicability</strong> — Measures how similar two brain regions' overall communication patterns are across the whole network.</p>
+            </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="end-text">---END---</div>
 
     </div>
   </main>
 
 
 
+<script src="js/vocab.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@
     --text-muted: #A09A92;
     --border: #E2DCD5;
     --highlight: #D4E8DF;
+    --highlighter: #ab5a5a; 
     --font-heading: 'Chillax', sans-serif;
     --font-body: 'Satoshi', sans-serif;
   }
@@ -122,7 +123,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: auto;
+    overflow: visible;
   }
   
   /* ===========================
@@ -194,6 +195,8 @@
     border-left: 1px solid var(--border);
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: visible;
   }
   
   /* ===========================
@@ -345,6 +348,100 @@
     margin-top: 20px;
   }
   
+  /* ===========================
+     GLOSSARY
+     =========================== */
+  .glossary {
+    text-align: left;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .glossary-title {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .glossary .toc-header-line {
+    height: 1px;
+    background-color: var(--border);
+    margin-bottom: 24px;
+  }
+
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 40px;
+  }
+
+  .glossary-entry {
+    margin-bottom: 16px;
+  }
+
+  .glossary-entry p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .glossary-entry p strong {
+    font-weight: 700;
+  }
+
+  /* ===========================
+     VOCAB DEFINITIONS
+     =========================== */
+  .vocab {
+    text-decoration: underline dotted var(--text-muted);
+    text-underline-offset: 3px;
+    cursor: help;
+  }
+
+  .vocab-num {
+    font-size: 0.65em;
+    vertical-align: super;
+    line-height: 0;
+    margin-left: 1px;
+    color: var(--text-muted);
+  }
+
+  .glossary-entry.gloss-active {
+    background-color: var(--highlighter);
+    padding: 4px 8px;
+    border-radius: 2px;
+  }
+
+  .vocab .vocab-def {
+    display: none;
+    position: absolute;
+    left: calc(100% + 16px);
+    width: 150px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text);
+    z-index: 20;
+    pointer-events: none;
+    white-space: normal;
+  }
+
+  .vocab:hover .vocab-def {
+    display: block;
+  }
+
+  .end-text {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
   /* ===========================
      RESPONSIVE
      =========================== */

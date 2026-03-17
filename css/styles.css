@@ -161,6 +161,7 @@
     padding: 8px;
     position: relative;
     border-radius: 2px;
+    margin-bottom: 16px;
   }
   
   .fig-label {
@@ -179,6 +180,7 @@
     width: 100%;
     height: 150px;
     border-radius: 2px;
+    
   }
   
   /* ===========================
@@ -382,8 +384,9 @@
     white-space: nowrap;
   }
   
-  .toc-entry a:hover .toc-entry-title {
-    color: var(--green-mid);
+  .toc-section a:hover .toc-entry-title {
+    color: var(--green-dark);
+    font-weight: 600; /*NEED TO CHANGE THIS*/
   }
   
   /* ===========================

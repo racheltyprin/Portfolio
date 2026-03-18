@@ -2,14 +2,14 @@
    VARIABLES
    =========================== */
    :root {
-    --green-dark: #2D4A3E;
+    --green-dark: #1A4D3A;
     --cream: #FAF5F0;
     --text: #2A2A28;
     --text-secondary: #6E6A64;
-    --text-muted: #A09A92;
-    --border: #E2DCD5;
+    --text-muted: #7A736C;
+    --border: #1A4D3A;
     --highlight: #D4E8DF;
-    --highlighter: #ab5a5a; 
+    --highlighter: #d6b2b7; 
     --font-heading: 'Chillax', sans-serif;
     --font-body: 'Satoshi', sans-serif;
     --white: #fcf9f7;
@@ -36,7 +36,7 @@
   body {
     margin: 0;
     display: flex;
-    background-color: var(--cream);
+    background-color: var(--pink-bg);
     color: var(--text);
     height: 100vh;
     font-family: var(--font-body);
@@ -57,7 +57,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background: var(--cream);
+    background: var(--pink-bg);
   }
   
   .logo {
@@ -147,7 +147,7 @@
     color: var(--text-muted);
     position: sticky;
     top: 0;
-    background: var(--cream);
+    background: var(--pink-bg);
     z-index: 10;
   }
   
@@ -274,7 +274,7 @@
   }
   
   .highlight {
-    background-color: var(--highlight);
+    background-color: var(--highlighter);
     padding: 2px 8px;
     border-radius: 2px;
     color: var(--green-dark);
@@ -284,6 +284,12 @@
     border: 1px solid var(--border);
     border-radius: 2px;
     overflow: hidden;
+  }
+
+  .image-border img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
   
   .placeholder-diagram {
@@ -511,7 +517,7 @@
     margin-bottom: 8px;
   }
 
-  .prose ul {
+  .prose ul:not(.contact-links) {
     list-style: disc;
     padding-left: 20px;
     margin-bottom: 16px;
@@ -531,6 +537,151 @@
     font-weight: 700;
     color: var(--text);
     margin-bottom: 16px;
+  }
+
+  /* ===========================
+     CONTACT
+     =========================== */
+  .contact-links {
+    text-align: left;
+    max-width: 580px;
+    margin: 0 auto;
+    list-style: none;
+    padding: 0;
+  }
+
+  .contact-links li,
+  .contact-links > div {
+    margin-bottom: 20px;
+  }
+
+  .contact-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .contact-email {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--text);
+  }
+
+  .contact-links a {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--text);
+    text-decoration:underline dotted;
+    text-underline-offset: 3px;
+    transition: color 0.15s;
+  }
+  
+
+  .contact-links a:hover {
+    color: var(--green-dark);
+    text-decoration: underline;
+  }
+
+  .contact-divider {
+    width: 100%;
+    max-width: 580px;
+    height: 1px;
+    background-color: var(--border);
+    margin: 32px auto;
+  }
+
+  /* ===========================
+     LINKS GRID
+     =========================== */
+  .links-grid {
+    text-align: left;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .links-grid-title {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .links-grid .toc-header-line {
+    height: 1px;
+    background-color: var(--border);
+    margin-bottom: 24px;
+  }
+
+  .links-grid-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 40px;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .links-grid-entry {
+    margin-bottom: 16px;
+  }
+
+  .links-grid-entry p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .links-grid-entry p strong {
+    font-weight: 700;
+  }
+  .links-grid-grid .contact-links {
+    max-width: none;
+    margin: 0;
+  }
+
+
+/* ===========================
+     LINKS IN PROJECTS
+     =========================== */
+
+
+  .link-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .link-link {
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .link-link a {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--green-dark);
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
+    transition: color 0.15s;
+  }
+
+  .link-link a:hover {
+    color: var(--text);
+    text-decoration: underline;
   }
 
   /* ===========================

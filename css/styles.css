@@ -2,14 +2,14 @@
    VARIABLES
    =========================== */
    :root {
-    --green-dark: #2D4A3E;
-    --green-mid: #4A7B6A;
-    --pink: #C07E6E;
+    --green-dark: #1A4D3A;
+    --green-mid: #1E5C46;
+    --pink: #B85C4A;
     --pink-bg: #F0E2DC;
     --cream: #FAF5F0;
     --text: #2A2A28;
     --text-secondary: #6E6A64;
-    --text-muted: #A09A92;
+    --text-muted: #7A736C;
     --border: #E2DCD5;
     --font-heading: 'Chillax', sans-serif;
     --font-body: 'Satoshi', sans-serif;
@@ -281,7 +281,7 @@
      =========================== */
   .page-divider {
     border: none;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--pink-bg);
     margin-top: 72px;
   }
   
@@ -374,7 +374,7 @@
   
   .toc-entry-dots {
     flex: 1;
-    border-bottom: 1px dotted var(--border);
+    border-bottom: 1px dotted var(--text-secondary);
     min-width: 20px;
     margin-bottom: 4px;
   }

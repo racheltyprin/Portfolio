@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+const { useState, useEffect, useRef } = React;
 
 const GROUPS = {
   original: {
     label: "Original paper replication",
-    color: "#888780",
+    color: "#7A736C",
     models: [
       { label: "Communicability (full network)", r: 0.3711 },
       { label: "Direct", r: 0.3062 },
@@ -12,8 +12,9 @@ const GROUPS = {
     ]
   },
   v1: {
-    label: "Version 1: new subnet methods",
-    color: "#0F6E56",
+    label: "New subnet methods",
+    color: "rgba(26, 77, 58, 0.6)",
+    
     models: [
       { label: "Subnet comm. (gradient descent)", r: 0.3477 },
       { label: "Subnet comm. (simulated annealing)", r: 0.3480 },
@@ -22,8 +23,8 @@ const GROUPS = {
     ]
   },
   v2: {
-    label: "Version 2: new subnet + whole network",
-    color: "#185FA5",
+    label: "More new subnet + new whole network",
+    color: "#1A4D3A",
     models: [
       { label: "Heat kernel", r: 0.3934 },
       { label: "Cosine communicability", r: 0.3924 },
@@ -39,9 +40,16 @@ const BASELINE = 0.3711;
 const Y_MIN = 0.22;
 const Y_MAX = 0.42;
 
-export default function BrainConnectivityChart() {
+const HOVER_COLORS = {
+    original: "#5F5E5A",
+    v1: "#5B7A6D",
+    v2: "#1F5C45",
+  };
+  
+function BrainConnectivityChart() {
   const [active, setActive] = useState({ original: true, v1: false, v2: false });
   const [hovered, setHovered] = useState(null);
+  const [hoveredBtn, setHoveredBtn] = useState(null);
   const canvasRef = useRef(null);
   const chartRef = useRef(null);
 
@@ -78,7 +86,7 @@ export default function BrainConnectivityChart() {
         const left = chart.chartArea.left;
         const right = chart.chartArea.right;
         ctx.save();
-        ctx.strokeStyle = "#D85A30";
+        ctx.strokeStyle = "#d06a77";
         ctx.lineWidth = 1.5;
         ctx.setLineDash([5, 4]);
         ctx.beginPath();
@@ -86,10 +94,6 @@ export default function BrainConnectivityChart() {
         ctx.lineTo(right, yPos);
         ctx.stroke();
         ctx.setLineDash([]);
-        ctx.fillStyle = "#D85A30";
-        ctx.font = "11px sans-serif";
-        ctx.textAlign = "right";
-        ctx.fillText("original paper best result r = 0.371", right - 4, yPos - 5);
         ctx.restore();
       }
     };
@@ -117,12 +121,12 @@ export default function BrainConnectivityChart() {
           y: {
             min: Y_MIN,
             max: Y_MAX,
-            ticks: { font: { size: 11 }, color: "#888780", callback: v => v.toFixed(2) },
-            grid: { color: "rgba(136,135,128,0.12)" },
-            title: { display: true, text: "mean Pearson r", font: { size: 12 }, color: "#888780" }
+            ticks: { font: { size: 11, family: "'Satoshi', sans-serif" }, color: "#7A736C", callback: v => v.toFixed(2) },
+            grid: { color: "rgba(122, 115, 108, 0.12)" },
+            title: { display: true, text: "mean Pearson r", font: { size: 12, family: "'Satoshi', sans-serif" }, color: "#7A736C" }
           },
           x: {
-            ticks: { font: { size: 10 }, color: "#888780", maxRotation: 35, minRotation: 25 },
+            ticks: { font: { size: 10, family: "'Satoshi', sans-serif" }, color: "#7A736C", maxRotation: 55, minRotation: 55 },
             grid: { display: false }
           }
         },
@@ -149,26 +153,43 @@ export default function BrainConnectivityChart() {
   }, [active]);
 
   return (
-    <div style={{ fontFamily: "inherit", padding: "1rem 0", position: "relative" }}>
-      <div style={{ display: "flex", gap: 8, marginBottom: "1.5rem", flexWrap: "wrap" }}>
+    <div style={{ fontFamily: "'Satoshi', sans-serif", padding: "1rem 0", paddingLeft: "16px", position: "relative", background: "transparent" }}>
+      <div style={{ display: "flex", gap: 8, marginBottom: "1.5rem", flexWrap: "wrap", justifyContent: "center" }}>
         {Object.entries(GROUPS).map(([key, group]) => (
           <button
-            key={key}
-            onClick={() => toggle(key)}
+          key={key}
+          onClick={() => toggle(key)}
+          onMouseDown={e => e.preventDefault()}
+          onMouseEnter={() => setHoveredBtn(key)}
+          onMouseLeave={() => setHoveredBtn(null)}
             style={{
-              padding: "6px 14px",
-              fontSize: 13,
-              borderRadius: 6,
-              border: active[key] ? "1.5px solid #2C2C2A" : "0.5px solid #B4B2A9",
-              background: active[key] ? "#F1EFE8" : "transparent",
-              color: active[key] ? "#2C2C2A" : "#888780",
+              padding: "6px 10px",
+              fontSize: 10,
+              fontFamily: "'Chillax', sans-serif",
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              borderRadius: 2,
+              border: "1px solid #1A4D3A",
+              background: active[key]
+                ? (hoveredBtn === key ? HOVER_COLORS[key] : group.color)
+                : (hoveredBtn === key ? "#E8E0D8" : "transparent"),
+              color: active[key] ? "#FAF5F0" : "#7A736C",
               cursor: "pointer",
-              fontWeight: active[key] ? 500 : 400,
             }}
           >
             {group.label}
           </button>
         ))}
+      </div>
+
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: "0.75rem", justifyContent: "center" }}>
+        <svg width="30" height="2" style={{ display: "block" }}>
+          <line x1="0" y1="1" x2="30" y2="1" stroke="#d06a77" strokeWidth="1.5" strokeDasharray="5,4" />
+        </svg>
+        <span style={{ fontSize: 12, fontFamily: "'Satoshi', sans-serif", color: "#7A736C" }}>
+          original paper methods' best result (communicability: r = 0.371)
+        </span>
       </div>
 
       <div style={{ position: "relative", width: "100%", height: 340 }}>
@@ -180,19 +201,20 @@ export default function BrainConnectivityChart() {
           position: "fixed",
           left: hovered.x + 14,
           top: hovered.y - 10,
-          background: "#fff",
-          border: "0.5px solid #B4B2A9",
-          borderRadius: 8,
+          background: "#FAF5F0",
+          border: "1px solid #1A4D3A",
+          borderRadius: 2,
           padding: "8px 12px",
           fontSize: 12,
-          color: "#2C2C2A",
+          fontFamily: "'Satoshi', sans-serif",
+          color: "#2A2A28",
           pointerEvents: "none",
           zIndex: 100,
           lineHeight: 1.6,
         }}>
-          <div style={{ fontWeight: 500 }}>{hovered.label}</div>
+          <div style={{ fontWeight: 700 }}>{hovered.label}</div>
           <div>r = {hovered.r}</div>
-          <div style={{ color: hovered.positive ? "#0F6E56" : "#D85A30" }}>{hovered.diff}</div>
+          <div style={{ color: hovered.positive ? "#1A4D3A" : "#d06a77" }}>{hovered.diff}</div>
         </div>
       )}
     </div>

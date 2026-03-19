@@ -6,6 +6,7 @@
   <title>Hopecore Research — Rachel Typrin</title>
   <link href="https://api.fontshare.com/v2/css?f[]=chillax@700,800,900&f[]=satoshi@400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/project.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 </head>
 <body>
 
@@ -72,10 +73,18 @@
 
       <figure class="main-figure">
         <figcaption class="fig-label">
-          <span class="highlight">FIG 2. Component architecture.</span>
+          <span class="highlight">FIG 2. Network graph of content and message themes in hopecore posts.</span>
         </figcaption>
         <div class="image-border">
-          <div class="placeholder-diagram">Diagram goes here</div>
+          <div class="network-chart-wrap">
+            <div class="network-legend">
+              <div class="network-legend-item"><div class="network-legend-dot" style="background:#d6b2b7"></div>Content theme</div>
+              <div class="network-legend-item"><div class="network-legend-dot" style="background:#1A4D3A"></div>Message theme</div>
+              <div class="network-legend-item network-legend-note">node size = post count · edge width = co-occurrence</div>
+            </div>
+            <svg id="network-svg" viewBox="0 0 860 580"></svg>
+            <div class="network-info-bar" id="info-bar">Hover a node to highlight connections · Drag to rearrange</div>
+          </div>
         </div>
       </figure>
 
@@ -83,14 +92,14 @@
         <p>We analyzed 244 hopecore posts and 450 user comments on Instagram, coding each by visual content, message category, and type of hope-conducive information. Drawing on psychological and philosophical frameworks, we evaluated hopecore against three components of hope: believing a positive outcome is possible, feeling motivated to pursue it, and having a concrete pathway for getting there. 72% of comments were positive in valence, and many went beyond simple reactions: users shared personal reflections, articulated goals, and expressed renewed motivation. This pointed clearly to the first two components of hope, but rarely the third, suggesting an opportunity for platforms to better support users in translating hopeful thinking into action.</p>
       </article>
 
-      <figure class="main-figure">
+      <!-- <figure class="main-figure">
         <figcaption class="fig-label">
           <span class="highlight">FIG 3. Feedback</span>
         </figcaption>
         <div class="image-border">
           <div class="placeholder-diagram">Diagram goes here</div>
         </div>
-      </figure>
+      </figure> -->
 
       <article class="prose">
         <p>Platforms could act on these findings in three ways: surfacing positive content algorithmically to users showing signs of distress, encouraging reflection and active engagement with comment prompts, and building community features that connect users around shared hopeful themes. By understanding why hopecore resonates with users, we can begin to imagine social media platforms that are intentionally designed to cultivate hope, reflection, and positive connection.</p>
@@ -114,5 +123,6 @@
 
 
 
+<script src="js/hopecore-network.js"></script>
 </body>
 </html>

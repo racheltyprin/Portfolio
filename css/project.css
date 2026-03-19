@@ -685,6 +685,80 @@
   }
 
   /* ===========================
+     HOPECORE NETWORK CHART
+     =========================== */
+  .network-chart-wrap {
+    padding: 24px 16px 12px;
+    background: var(--cream);
+  }
+
+  .network-legend {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    justify-content: center;
+  }
+
+  .network-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .network-legend-note {
+    font-family: var(--font-body);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 8px;
+  }
+
+  .network-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  #network-svg {
+    display: block;
+    width: 100%;
+  }
+
+  .network-info-bar {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    min-height: 16px;
+    letter-spacing: 0.01em;
+  }
+
+  .col-label {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    fill: var(--text-muted);
+  }
+
+  .node-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    fill: var(--text-muted);
+    pointer-events: none;
+  }
+
+  /* ===========================
      RESPONSIVE
      =========================== */
   @media (max-width: 900px) {

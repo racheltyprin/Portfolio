@@ -887,4 +887,8 @@
     .prose p {
       font-size: 16px;
     }
+
+    .fig-label {
+      opacity: 1;
+    }
   }

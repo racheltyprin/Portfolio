@@ -403,8 +403,9 @@
     }
   
     .hero-top {
-      grid-template-columns: 1fr;
-      gap: 16px;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
     }
   
     .hero-title {

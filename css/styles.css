@@ -29,6 +29,10 @@
     overflow-x: hidden;
     max-width: 100%;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
   
   /* ===========================
      BASE
@@ -40,7 +44,9 @@
     font-size: 16px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
-    padding: var(--gutter);
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: var(--gutter)
   }
   
   a {
@@ -78,12 +84,20 @@
     white-space: nowrap;
   }
   
-  .hero-photo {
+  .hero-photo-wrapper {
     height: clamp(36px, 6vw, 72px);
-    width: auto;
-    object-fit: cover;
+    width: clamp(36px, 6vw, 72px);
     border-radius: 50%;
+    overflow: hidden;
     justify-self: end;
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.5) translateY(-10%);
   }
 
   .hero-subtitle {
@@ -96,46 +110,25 @@
   }
   
   /* ===========================
-     HERO GRIDS
+     HERO CONTENT
      =========================== */
-  .hero-grid-top {
+  .hero-content {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2fr 3fr;
     gap: var(--gutter);
+    align-items: start;
     margin-bottom: var(--gutter);
   }
-  
-  .hero-grid-bottom {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: var(--gutter);
-    
-    
-  }
-  
-  .hero-illustration {
-    grid-column: 2 / 4;
-    position: relative;
-  }
-  
-  .hero-illustration-box {
-    width: 100%;
-    height: 100%;
-    min-height: 560px;
-    border: 1px dashed var(--border);
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    font-size: 13px;
+
+  .hero-diagram {
+    min-height: 500px;
   }
   
   /* ===========================
      COLUMNS & TEXT
      =========================== */
   .hero-col p {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.75;
     color: var(--text);
     margin-bottom: 16px;
@@ -277,6 +270,25 @@
   }
 
   /* ===========================
+     SCROLL HINT
+     =========================== */
+  .scroll-hint {
+    display: flex;
+    justify-content: center;
+    margin-top: -40px;
+    cursor: pointer;
+  }
+
+  .scroll-hint::before {
+    content: '';
+    width: 28px;
+    height: 28px;
+    border-bottom: 2px solid var(--green-dark);
+    border-right: 2px solid var(--green-dark);
+    transform: rotate(45deg);
+  }
+
+  /* ===========================
      PAGE DIVIDER
      =========================== */
   .page-divider {
@@ -307,7 +319,7 @@
     
     font-weight: 700;
     font-size: 22px;
-    color: var(--text);
+    color: var(--green-dark);
     white-space: nowrap;
   }
   
@@ -417,17 +429,11 @@
       text-align: left;
     }
   
-    .hero-grid-top,
-    .hero-grid-bottom {
-      display: block;
+    .hero-content {
+      grid-template-columns: 1fr;
     }
-  
-    .hero-illustration {
-      grid-column: auto;
-      margin-top: 32px;
-    }
-  
-    .hero-illustration-box {
+
+    .hero-diagram {
       min-height: 300px;
     }
   

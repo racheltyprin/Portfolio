@@ -77,7 +77,7 @@
 
       <figure class="main-figure">
         <figcaption class="fig-label">
-          <span class="highlight">FIG 2. Description and diagram of key communicability measures used.</span>
+          <span class="highlight">FIG 1. Description and diagram of key communicability measures used.</span>
         </figcaption>
         <div class="image-border">
           <img src="photos/BrainConnectivity2.png" alt="Brain connectivity diagram">
@@ -89,9 +89,9 @@
         <p>I replicated the 2023 paper’s methodology using the same 1000Brains dataset, but my results didn’t support their central claim that subnet communicability outperformed communicability. I found that <a class="vocab" href="#gloss-6">full-network communicability<sup class="vocab-num">6</sup><span class="vocab-def"><strong>Full-network communicability</strong> — A measure of how easily information spreads between all pairs of brain regions simultaneously, using the full structural connectome rather than routing through a subset of nodes.</span></a> outperformed every subnet communicability variant I tested. Rather than stopping at a contradictory finding, I surveyed more recent literature and implemented several communication models the paper hadn’t tested including <a class="vocab" href="#gloss-7">heat kernel diffusion<sup class="vocab-num">7</sup><span class="vocab-def"><strong>Heat kernel diffusion</strong> — Simulates how a signal spreads and decays through a network over time.</span></a>, <a class="vocab" href="#gloss-8">cosine communicability<sup class="vocab-num">8</sup><span class="vocab-def"><strong>Cosine communicability</strong> — Measures how similar two brain regions’ overall communication patterns are across the whole network.</span></a>.</p>
       </article>
 
-      <figure class="main-figure">
+      <figure class="main-figure interactive">
         <figcaption class="fig-label">
-          <span class="highlight">FIG 3. Bar graph showing sfc scores for different communicability measures.<br> Select the buttons to view the results at different stages.</span>
+          <span class="highlight">FIG 2. Bar graph showing sfc scores for different communicability measures.<br> Select the buttons to view the results at different stages.</span>
         </figcaption>
         <div class="image-border">
           <div id="brain-chart"></div>
@@ -146,7 +146,6 @@
 
 
 <script src="js/vocab.js"></script>
-<script src="js/expand.js"></script>
 <script type="text/babel" src="js/brainconnectivitychart.jsx"></script>
 <script type="text/babel">ReactDOM.createRoot(document.getElementById("brain-chart")).render(<BrainConnectivityChart />)</script>
 </body>
